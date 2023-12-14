@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   before_action :set_user, only: [:update]
   before_action :authenticate_user!
   before_action :authorise_admin!
+  
   def index
     @users = User.all
     @user = User.new
@@ -40,7 +41,7 @@ class AdminController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :role)
+    params.require(:user).permit(:email, :password, :password_confirmation, :role, :id)
   end
 
   def set_user
