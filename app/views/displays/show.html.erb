@@ -1,0 +1,19 @@
+<h1>Display Contents</h2>
+<div id="contents">
+  <% @content.each do |content| %>
+    <div>
+      <p>
+        <strong>Title:</strong>
+        <%= content.title %>
+      </p>
+      <% if content.image.attached? %>
+        <%= link_to image_tag(content.image_as_thumbnail), content.image %>
+      <% else %>
+        <p>No Image Available</p>
+      <% end %>
+    </div>
+  <% end %>
+  <div>
+  <%= link_to "Back to displays", user_displays_path %>
+  </div>
+</div>

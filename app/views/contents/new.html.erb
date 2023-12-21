@@ -1,2 +1,16 @@
-<h1>Contents#new</h1>
-<p>Find me in app/views/contents/new.html.erb</p>
+<h1>New Content</h1>
+<%= form_with(model: [@user, @display, @content], url: user_display_contents_path(@user, @display), method: :post) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create Content' %>
+  </div>
+<% end %>

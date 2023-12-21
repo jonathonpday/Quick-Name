@@ -1,1 +1,12 @@
-<h1>Displays#new</h1>
+<h1>New Display</h1>
+
+<%= form_with(model: @display, url: user_displays_path(@user), method: :post) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create Display' %>
+  </div>
+<% end %>
