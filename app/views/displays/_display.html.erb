@@ -4,7 +4,8 @@
   
   <% if display.content.present? %>
     <% first_content = display.content.first %>
-    <%= image_tag first_content.image_as_mini_thumbnail %>
+    <br>
+    <%= image_tag first_content.image_as_thumbnail %>
   <% else %>
     <p>No contents present for the display.</p>
   <% end %>
