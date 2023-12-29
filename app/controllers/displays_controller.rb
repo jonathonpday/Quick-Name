@@ -8,7 +8,7 @@ class DisplaysController < ApplicationController
 
   def show
     @display = @user.displays.find(params[:id])
-    @content = @display.content
+    @content = @display.contents
   end
 
   def new

@@ -11,6 +11,10 @@
       <% else %>
         <p>No Image Available</p>
       <% end %>
+      <br />
+      <% if content.audio.attached? %>
+        <%= tag :audio, src: url_for(content.audio), controls: true %>
+      <% end %>
     </div>
   <% end %>
   <div>

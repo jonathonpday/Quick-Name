@@ -1,6 +1,6 @@
 class Display < ApplicationRecord
   belongs_to :user
 
-  has_many :content, dependent: :destroy
-  accepts_nested_attributes_for :content, allow_destroy: true
+  has_many :contents, dependent: :destroy
+  accepts_nested_attributes_for :contents, allow_destroy: true
 end

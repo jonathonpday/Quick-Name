@@ -2,16 +2,19 @@ class ContentsController < ApplicationController
   before_action :find_user_and_display, only: [:new, :create, :destroy]
 
   def new
-    @content = @display.content.build
+    @content = @display.contents.build
   end
 
   def create
-    @content = @display.content.build(content_params)
-
-    if @content.save
-      redirect_to user_display_path(@user, @display), notice: 'Content was successfully created.'
+    if @display.contents.count >= 3
+      redirect_to user_display_path(@user, @display), alert: 'Maximum number of contents (3) reached for this display.'
     else
-      render :new
+      @content = @display.contents.create(content_params)
+      if @content.save
+        redirect_to new_user_display_content_path(user_id: @user.id, display_id: @display.id), notice: 'Content was successfully created.'
+      else
+        render :new
+      end
     end
   end
 
@@ -19,7 +22,7 @@ class ContentsController < ApplicationController
     @content.destroy
 
     respond_to do |format|
-      format.html { redirect_to contents_url, notice: "Content was successfully destroyed." }
+      format.html { redirect_to contents_url, notice: 'Content was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -32,6 +35,6 @@ class ContentsController < ApplicationController
   end
 
   def content_params
-    params.require(:content).permit(:title, :image)
+    params.require(:content).permit(:title, :image, :audio)
   end
 end

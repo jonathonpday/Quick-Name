@@ -2,10 +2,10 @@
   <strong>Title:</strong>
   <%= display.title %>
   
-  <% if display.content.present? %>
-    <% first_content = display.content.first %>
+  <% if display.contents.present? %>
+    <% first_content = display.contents.first %>
     <br>
-    <%= image_tag first_content.image_as_thumbnail %>
+    <%= image_tag first_content.image_as_mini_thumbnail %>
   <% else %>
     <p>No contents present for the display.</p>
   <% end %>

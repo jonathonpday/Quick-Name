@@ -1,16 +1,41 @@
 <h1>New Content</h1>
-<%= form_with(model: [@user, @display, @content], url: user_display_contents_path(@user, @display), method: :post) do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<%= form_with(model: [@user, @display, @content], local: true, validate: true) do |form| %>
+  <% limit = 3 %>
+  <% if @display.contents.count >= limit %>
+    <p class="alert alert-warning">Maximum number of contents (3) reached for this display.</p>
+  <% else %>
+    <p>Contents created: <%= @display.contents.count %> / <%= limit %></p>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit 'Create Content' %>
-  </div>
+    <%= content_tag :div, data: { controller: 'recorder' } do %>
+      <%= form.label :audio %>
+      <%= form.file_field :audio, hidden: true, direct_upload: true, data: { target: 'recorder.input' } %>
+    <p>
+      <%= button_tag 'RECORD',
+               class: 'btn btn-primary',
+               data: { target: 'recorder.recordButton', action: 'click->recorder#record' } %>
+      <%= button_tag 'STOP',
+                      class: 'btn btn-primary hidden',
+                      data: { target: 'recorder.stopButton', action: 'click->recorder#stop' } %>
+    </p>
+  <% end %>
+
+
+
+    <div class="actions">
+      <%= form.submit form.object.new_record? ? 'Add Another Content' : 'Create Content' %>
+    </div>
+  <% end %>
 <% end %>
+
+<%= link_to 'Back', user_display_path(@user, @display) %>
+
+
