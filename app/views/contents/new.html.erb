@@ -1,4 +1,16 @@
 <h1>New Content</h1>
+
+<% if @errors.any? %>
+  <div class="alert alert-danger">
+    <h4><%= pluralize(@errors.count, "error") %> prohibited this content from being saved:</h4>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(model: [@user, @display, @content], local: true, validate: true) do |form| %>
   <% limit = 3 %>
   <% if @display.contents.count >= limit %>
@@ -18,20 +30,18 @@
     <%= content_tag :div, data: { controller: 'recorder' } do %>
       <%= form.label :audio %>
       <%= form.file_field :audio, hidden: true, direct_upload: true, data: { target: 'recorder.input' } %>
-    <p>
-      <%= button_tag 'RECORD',
+      <p>
+        <%= button_tag 'RECORD',
                class: 'btn btn-primary',
                data: { target: 'recorder.recordButton', action: 'click->recorder#record' } %>
-      <%= button_tag 'STOP',
+        <%= button_tag 'STOP',
                       class: 'btn btn-primary hidden',
                       data: { target: 'recorder.stopButton', action: 'click->recorder#stop' } %>
     </p>
-  <% end %>
-
-
-
+    <% end %>
+    
     <div class="actions">
-      <%= form.submit form.object.new_record? ? 'Add Another Content' : 'Create Content' %>
+      <%= form.submit @display.contents.count < (limit - 1) ? 'Add Another Content' : 'Create Slideshow' %>
     </div>
   <% end %>
 <% end %>

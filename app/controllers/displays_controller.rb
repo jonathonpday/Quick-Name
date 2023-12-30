@@ -13,17 +13,20 @@ class DisplaysController < ApplicationController
 
   def new
     @display = Display.new
+    @errors = flash[:errors] || []
   end
 
   def create
     @display = @user.displays.new(display_params)
-
+    
     if @display.save
       redirect_to new_user_display_content_path(user_id: @user.id, display_id: @display.id), notice: 'Display was successfully created.'
     else
-      render :new
+      flash[:errors] = @display.errors.full_messages
+      redirect_to new_user_display_path(user_id: @user.id)
     end
   end
+
 
   def destroy
     @display.destroy

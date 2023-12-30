@@ -3,6 +3,7 @@ class ContentsController < ApplicationController
 
   def new
     @content = @display.contents.build
+    @errors = flash[:errors] || []
   end
 
   def create
@@ -13,7 +14,8 @@ class ContentsController < ApplicationController
       if @content.save
         redirect_to new_user_display_content_path(user_id: @user.id, display_id: @display.id), notice: 'Content was successfully created.'
       else
-        render :new
+        flash[:errors] = @content.errors.full_messages
+        redirect_to new_user_display_path(user_id: @user.id, display_id: @display.id)
       end
     end
   end
