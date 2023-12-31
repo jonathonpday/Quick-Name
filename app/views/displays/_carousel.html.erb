@@ -1,0 +1,13 @@
+<div class="relative" data-controller="carousel">
+  <div>
+    <button data-action="click->carousel#previous" type="button">Previous</button>
+  </div>
+  <div>
+    <button data-action="click->carousel#next" type="button">Next</button>
+  </div>
+  <% @content.each_with_index do |content, idx| %>
+    <div data-carousel-target="image" class="<%= idx > 0 ? "hidden" : nil %>">
+      <%= image_tag(content.image_as_thumbnail, { image: content.image, loading: "lazy" }) %>
+    </div>
+  <% end %>
+</div>
