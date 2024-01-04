@@ -2,26 +2,6 @@
 
 <%= render "carousel" %>
 
-
-<div id="contents">
-  <% @content.each do |content| %>
-    <div>
-      <p>
-        <strong>Title:</strong>
-        <%= content.title %>
-      </p>
-      <% if content.image.attached? %>
-        <%= link_to image_tag(content.image_as_thumbnail), content.image %>
-      <% else %>
-        <p>No Image Available</p>
-      <% end %>
-      <br />
-      <% if content.audio.attached? %>
-        <%= tag :audio, src: url_for(content.audio), controls: true %>
-      <% end %>
-    </div>
-  <% end %>
-  <div>
-  <%= link_to "Back to displays", user_displays_path %>
-  </div>
+<div>
+  <%= link_to "Back to Slideshows", user_displays_path %>
 </div>

@@ -11,8 +11,9 @@
   </div>
 <% end %>
 
+<% limit = 3 %>
+
 <%= form_with(model: [@user, @display, @content], local: true, validate: true) do |form| %>
-  <% limit = 3 %>
   <% if @display.contents.count >= limit %>
     <p class="alert alert-warning">Maximum number of contents (3) reached for this display.</p>
   <% else %>
@@ -46,6 +47,7 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Back', user_display_path(@user, @display) %>
-
+<% if @display.contents.count > (limit - 1) %>
+  <%= link_to 'Back to Slideshows', user_displays_path(current_user) %>
+<% end %>
 

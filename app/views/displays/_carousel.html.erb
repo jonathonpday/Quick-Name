@@ -7,7 +7,16 @@
   </div>
   <% @content.each_with_index do |content, idx| %>
     <div data-carousel-target="image" class="<%= idx > 0 ? "hidden" : nil %>">
+      <div data-carousel-target="title" class="hidden">
+        <%= content.title %>
+      </div>
+      <div data-carousel-target="audio" class="hidden">
+        <% if content.audio.attached? %>
+          <%= tag :audio, src: url_for(content.audio), controls: true %>
+        <% end %>
+      </div>
       <%= image_tag(content.image_as_thumbnail, { image: content.image, loading: "lazy" }) %>
     </div>
   <% end %>
 </div>
+

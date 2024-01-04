@@ -1,4 +1,3 @@
-
 <h1>Slideshows</h1>
 
 <div id="displays">
@@ -6,8 +5,9 @@
     <% @display.each do |display| %>
       <%= render display %>
       <p>
-        <%= link_to "Show this display", user_display_path(user_id: display.user.id, id: display.id) %>
-        <%= button_to "Destroy this display", user_display_path(user_id: display.user.id, id: display.id), method: :delete, data: { turbo_confirm: 'Are you sure?'} %>
+        <%= link_to "Show this Slideshow", user_display_path(user_id: display.user.id, id: display.id), class: 'show-slideshow-link' %>
+        <input type="number" placeholder="Slide duration (seconds)" class="slide-duration-input">
+        <%= button_to "Destroy this Slideshow", user_display_path(user_id: display.user.id, id: display.id), method: :delete, data: { turbo_confirm: 'Are you sure?'} %>
       </p>
     <% end %>
   <% else %>
@@ -17,3 +17,17 @@
 
 <%= link_to "Create Slideshow", new_user_display_path(current_user) %>
 <%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete} %>
+
+<script>
+  document.addEventListener('turbo:load', () => {
+    const showSlideshowLinks = document.querySelectorAll('.show-slideshow-link');
+
+    showSlideshowLinks.forEach(link => {
+      link.addEventListener('click', (event) => {
+        const inputField = event.target.parentElement.querySelector('.slide-duration-input');
+        const slideDuration = inputField ? parseInt(inputField.value, 10) : 5;
+        sessionStorage.setItem('slideDuration', slideDuration);
+      });
+    });
+  });
+</script>

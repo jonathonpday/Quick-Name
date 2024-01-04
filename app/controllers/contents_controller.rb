@@ -15,7 +15,7 @@ class ContentsController < ApplicationController
         redirect_to new_user_display_content_path(user_id: @user.id, display_id: @display.id), notice: 'Content was successfully created.'
       else
         flash[:errors] = @content.errors.full_messages
-        redirect_to new_user_display_path(user_id: @user.id, display_id: @display.id)
+        redirect_to new_user_display_content_path(user_id: @user.id, display_id: @display.id)
       end
     end
   end
