@@ -1,11 +1,14 @@
-<h1>Welcome to Quick Name</h1>
-<p>The time is <%= Time.now %></p>
-
-
-<% if user_signed_in? %>
-  <%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete} %>
-  <%= link_to "Slideshows", user_displays_path(current_user.id)  %>
-<% else %>
-  <%= link_to "Sign In", new_user_session_path %>
-  <%= link_to "Create Account", new_user_registration_path %>
-<% end %>
+<div class="container">
+  <div class="header">
+    <h1>Welcome to Quick Name</h1>
+  </div>
+  <div class="links">
+    <% if user_signed_in? %>
+      <%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete} %>
+      <%= link_to "Slideshows", user_displays_path(current_user.id)  %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path %>
+      <%= link_to "Create Account", new_user_registration_path %>
+    <% end %>
+  </div>
+</div>

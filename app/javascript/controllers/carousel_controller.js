@@ -21,9 +21,11 @@ export default class extends Controller {
 		this.imageTargets[this.index].classList.remove('hidden')
 
 		const storedSlideDuration = sessionStorage.getItem('slideDuration')
-		this.slideDuration = storedSlideDuration
+		this.slideDuration = !isNaN(parseInt(storedSlideDuration, 10))
 			? parseInt(storedSlideDuration, 10)
 			: 5
+
+		console.log(this.slideDuration)
 
 		setTimeout(() => {
 			this.titleTargets[this.index].classList.remove('hidden')

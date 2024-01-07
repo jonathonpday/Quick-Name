@@ -1,22 +1,26 @@
-<h1>Slideshows</h1>
+<div class="container">
+  <div class="header">
+    <h1>Slideshows</h1>
+  </div>
 
-<div id="displays">
-  <% if @display.present? %>
-    <% @display.each do |display| %>
-      <%= render display %>
-      <p>
-        <%= link_to "Show this Slideshow", user_display_path(user_id: display.user.id, id: display.id), class: 'show-slideshow-link' %>
-        <input type="number" placeholder="Slide duration (seconds)" class="slide-duration-input">
-        <%= button_to "Destroy this Slideshow", user_display_path(user_id: display.user.id, id: display.id), method: :delete, data: { turbo_confirm: 'Are you sure?'} %>
-      </p>
+  <div id="displays">
+    <% if @display.present? %>
+      <% @display.each do |display| %>
+        <%= render display %>
+        <p>
+          <%= link_to "Show this Slideshow", user_display_path(user_id: display.user.id, id: display.id), class: 'show-slideshow-link' %>
+          <input type="number" placeholder="Slide duration (seconds)" class="slide-duration-input">
+          <%= button_to "Destroy this Slideshow", user_display_path(user_id: display.user.id, id: display.id), method: :delete, data: { turbo_confirm: 'Are you sure?'} %>
+        </p>
+      <% end %>
+    <% else %>
+      <p>No slideshows present.</p>
     <% end %>
-  <% else %>
-    <p>No slideshows present.</p>
-  <% end %>
-</div>
+  </div>
 
-<%= link_to "Create Slideshow", new_user_display_path(current_user) %>
-<%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete} %>
+  <%= link_to "Create Slideshow", new_user_display_path(current_user) %>
+  <%= link_to "Sign Out", destroy_user_session_path, data: {turbo_method: :delete} %>
+</div>
 
 <script>
   document.addEventListener('turbo:load', () => {

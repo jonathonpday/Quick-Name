@@ -16,3 +16,84 @@
 .hidden {
 	display: none !important;
 }
+
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #f8f8f8;
+	margin: 0;
+	padding: 0;
+}
+
+.carousel-title {
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: green;
+	margin-bottom: 10px;
+}
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-controls {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.carousel-controls button {
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.carousel-images {
+	position: relative;
+}
+
+.carousel-images img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	text-decoration: none;
+	color: #007bff;
+	margin-right: 20px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.login {
+	margin-bottom: 10px;
+}
+
+.actions {
+	margin-top: 15px;
+}
+
+.links {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.field-group {
+	margin-bottom: 20px;
+}

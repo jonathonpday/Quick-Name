@@ -1,14 +1,14 @@
 <div class="relative" data-controller="carousel">
-  <div>
+  <div class="carousel-controls">
     <button data-action="click->carousel#previous" type="button">Previous</button>
-  </div>
-  <div>
     <button data-action="click->carousel#next" type="button">Next</button>
   </div>
   <% @content.each_with_index do |content, idx| %>
     <div data-carousel-target="image" class="<%= idx > 0 ? "hidden" : nil %>">
       <div data-carousel-target="title" class="hidden">
-        <%= content.title %>
+        <h2 class="carousel-title">
+          <%= content.title %>
+        </h2>      
       </div>
       <div data-carousel-target="audio" class="hidden">
         <% if content.audio.attached? %>

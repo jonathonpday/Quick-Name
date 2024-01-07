@@ -12,7 +12,6 @@ export default class extends Controller {
 
 	record(e) {
 		e.preventDefault()
-		console.log('Clicked Record!!!')
 		this.chunks = []
 		this.stream().then(stream => {
 			this._stream = stream
