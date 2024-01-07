@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'manual/index'
   devise_for :users
   
   root 'site#index'
